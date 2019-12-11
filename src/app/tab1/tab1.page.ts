@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -7,9 +8,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab1Page implements OnInit {
 
-  constructor() { }
+  id: any;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.route.queryParams.subscribe(params => {
+      if (params && params.id) {
+        this.id = params.id
+      }
+    })
+  }
 
   ngOnInit() {
+  }
+
+  openTab1WithQueryParams() {
+    let navigationExtras = {
+      queryParams: {
+        id: this.id
+      }
+    }
+    this.router.navigate(['tab1'], navigationExtras);
+  }
+  openTab2WithQueryParams() {
+    let navigationExtras = {
+      queryParams: {
+        id: this.id
+      }
+    }
+    this.router.navigate(['tab2'], navigationExtras);
+  }
+  openTab3WithQueryParams() {
+    let navigationExtras = {
+      queryParams: {
+        id: this.id
+      }
+    }
+    this.router.navigate(['tab3'], navigationExtras);
   }
 
 }
