@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
     })
   }
   getUserDetail(userID: any) {
-    this.facebook.api('/' + userID + '/?fields=id,email,name,picture', ['public_profile'])
+    this.facebook.api('/' + userID + '/?fields=id,email,name,picture.width(720).height(720)', ['public_profile'])
     .then(response => {
       console.log(response);
       this.userData = response;

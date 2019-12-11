@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
-
 var firestore = firebase.firestore();
 
 @Component({
@@ -13,7 +11,7 @@ var firestore = firebase.firestore();
 export class Tab3Page implements OnInit {
 
   id: any;
-  userData$: any;
+  public userData: firebase.firestore.DocumentData;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,22 +22,15 @@ export class Tab3Page implements OnInit {
         this.id = params.id
       }
     })
-    
-    var docRef = firestore.collection('users').doc('2545528815564994');
-    docRef.get().then(function(doc) {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-            console.log(typeof doc.data());
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch(function(error) {
-        console.log("Error getting document:", error);
-    });
+
   }
 
   ngOnInit() {
+    var docRef = firestore.collection('users').doc(this.id);
+    docRef.get().then((snapshot) => {
+        
+        this.userData = snapshot.data();
+    });
   }
 
   openTab1WithQueryParams() {
