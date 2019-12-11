@@ -1,14 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tab3</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title align="center">
+        Profile
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+    <ion-card>
+        <ion-card-header>
+          <ion-card-title>Hi Min_chayisara!</ion-card-title>
+        </ion-card-header>
+        <img src="./assets/image/min.jpg"/>
+        <ion-card-content>
+          
+          <div>Name : Min_chayisara</div>
+          <div>Year : Sophomore</div>
+          <div>Faculty : Engineering</div>
+          <div>Status : Student</div>
+        </ion-card-content>
+      </ion-card>
+ 
+  <ion-button color="secondary" expand="block" routerLink="/login/" routerDirection="forward">Waiting</ion-button>
+  <ion-button color="secondary" expand="block" routerLink="/confirmed/" routerDirection="forward">Confirmed</ion-button>
 </ion-content>
 
-<ion-tabs>
+<ion-footer>
     <ion-tab-bar>
       <ion-tab-button (click)="openTab1WithQueryParams()">
         <ion-icon name="school"></ion-icon>
@@ -23,4 +41,4 @@
         <ion-label>Profile</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs>
+</ion-footer>
