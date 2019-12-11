@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
+import { environment } from 'src/environments/environment';
+
+firebase.initializeApp(environment.firebaseConfig);
+var firestore = firebase.firestore();
+const colRef = firestore.collection("users")
 
 @Component({
   selector: 'app-login',
@@ -29,7 +35,6 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    this.checkLoginStatus();
   }
 
   //Facebook Functions
@@ -52,7 +57,7 @@ export class LoginPage implements OnInit {
     .then(response => {
       console.log(response);
       this.userData = response;
-      //this.addDataToFirestore();
+      this.addDataToFirestore(this.userData);
       this.checkLoginStatus();
     })
   }
@@ -71,5 +76,19 @@ export class LoginPage implements OnInit {
       }
     }
     this.router.navigate(['tab2'], navigationExtras);
+  }
+
+  addDataToFirestore(data: any) {
+    console.log("I am going to save "+data['id']+" to Firestore")
+    colRef.doc(data['id']).set({
+      id: data['id'],
+      name: data['name'],
+      email: data['email'],
+      picture: data['picture']['data']['url'],
+    }).then(function() {
+      console.log("Status saved!");
+    }).catch(function (error){
+      console.log("Got an error: ", error);
+    });
   }
 }

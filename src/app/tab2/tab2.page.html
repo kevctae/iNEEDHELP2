@@ -1,26 +1,107 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>tab2</ion-title>
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title align="center">Student</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content overflow-scroll="true"> 
+  <ion-card>
+    <ion-item>
+      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
+      <ion-label>DIS STR : Generating Function</ion-label>
+      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
+    </ion-item>
+    <ion-card-content>
+      <div>
+        <ion-icon name="person"></ion-icon> min_chayisara
+      </div>
+      <div>
+        <ion-icon name="people"></ion-icon> 8/10
+      </div>
+      <div>
+        <ion-icon name="logo-bitcoin"></ion-icon> 200฿/person
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
+      <ion-label>ADV MAT : Power Series</ion-label>
+      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
+    </ion-item>
+    <ion-card-content>
+      <div>
+        <ion-icon name="person"></ion-icon> kevctae
+      </div>
+      <div>
+        <ion-icon name="people"></ion-icon> 4/10
+      </div>
+      <div>
+        <ion-icon name="logo-bitcoin"></ion-icon> 250฿/person
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
+      <ion-label>ELE CIR : JK Flipflop</ion-label>
+      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
+    </ion-item>
+    <ion-card-content>
+      <div>
+        <ion-icon name="person"></ion-icon> jjjajarrr
+      </div>
+      <div>
+        <ion-icon name="people"></ion-icon> 10/10
+      </div>
+      <div>
+        <ion-icon name="logo-bitcoin"></ion-icon> 180฿/person
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
+      <ion-label>INTRO ICE : CI/CD</ion-label>
+      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
+    </ion-item>
+    <ion-card-content>
+      <div>
+        <ion-icon name="person"></ion-icon> chanonartt
+      </div>
+      <div>
+        <ion-icon name="people"></ion-icon> 9/10
+      </div>
+      <div>
+        <ion-icon name="logo-bitcoin"></ion-icon> 19฿/person
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
-<ion-tabs>
-    <ion-tab-bar>
-      <ion-tab-button (click)="openTab1WithQueryParams()">
+<ion-footer>
+  <ion-tab-bar>
+    <ion-tab-button (click)="openTab1WithQueryParams()">
         <ion-icon name="school"></ion-icon>
-        <ion-label>Teacher</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab2WithQueryParams()">
-        <ion-icon name="globe"></ion-icon>
-        <ion-label>Student</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab3WithQueryParams()">
-        <ion-icon name="person"></ion-icon>
-        <ion-label>Profile</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+      <ion-label>Teacher</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="openTab2WithQueryParams()">
+      <ion-icon name="globe"></ion-icon>
+      <ion-label>Student</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="openTab3WithQueryParams()">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
