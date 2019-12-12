@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 
-firebase.initializeApp(environment.firebaseConfig);
 var firestore = firebase.firestore();
 const colRefCards = firestore.collection("cards")
 

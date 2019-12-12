@@ -4,7 +4,6 @@ import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
 import { IonInfiniteScroll } from '@ionic/angular';
 
-firebase.initializeApp(environment.firebaseConfig);
 var firestore = firebase.firestore();
 const colRefCards = firestore.collection("cards")
 
