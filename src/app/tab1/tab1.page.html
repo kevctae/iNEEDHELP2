@@ -1,14 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tab1</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title align="center">
+      Teacher
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
+      <ion-label>Discrete : Generating Function</ion-label>
+      <ion-button fill="solid" shape="round" slot="end">Teach!</ion-button>
+    </ion-item>
+    <ion-card-content>
+      <div>
+        <ion-icon name="person"></ion-icon> min_chayisara
+      </div>
+      <div>
+        <ion-icon name="people"></ion-icon> 8/10
+      </div>
+      <div>
+        <ion-icon name="logo-bitcoin"></ion-icon> 1000฿/hr
+      </div>
+    </ion-card-content>
+  </ion-card>
 
+
+
+
+    
 </ion-content>
 
-<ion-tabs>
+<ion-footer>
   <ion-tab-bar>
     <ion-tab-button (click)="openTab1WithQueryParams()">
       <ion-icon name="school"></ion-icon>
@@ -23,4 +47,4 @@
       <ion-label>Profile</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-</ion-tabs>
+</ion-footer>

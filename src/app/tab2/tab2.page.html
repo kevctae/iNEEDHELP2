@@ -1,26 +1,65 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>tab2</ion-title>
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title align="center">Student</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openNewCardWithQueryParams()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngFor="let item of items">
+    <ion-card *ngIf='item?.id'>
+      <ion-item>
+        <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
+        <ion-label>{{item.topic}}</ion-label>
+        <ion-button fill="solid" shape="round" slot="end">Join!</ion-button>
+      </ion-item>
+      <ion-card-content>
+        <div>
+          <ion-icon name="book"></ion-icon> {{item.courseName}}
+        </div>
+        <div>
+          <ion-icon name="person"></ion-icon> 
+        </div>
+        <div>
+          <ion-icon name="people"></ion-icon> {{item.count}}/{{item.capacity}}
+        </div>
+        <div>
+          <ion-icon name="logo-bitcoin"></ion-icon> {{item.price}}฿/person
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="i <= 0">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 
-<ion-tabs>
-    <ion-tab-bar>
-      <ion-tab-button (click)="openTab1WithQueryParams()">
+<ion-footer>
+  <ion-tab-bar>
+    <ion-tab-button (click)="openTab1WithQueryParams()">
         <ion-icon name="school"></ion-icon>
-        <ion-label>Teacher</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab2WithQueryParams()">
-        <ion-icon name="globe"></ion-icon>
-        <ion-label>Student</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab3WithQueryParams()">
-        <ion-icon name="person"></ion-icon>
-        <ion-label>Profile</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+      <ion-label>Teacher</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="openTab2WithQueryParams()">
+      <ion-icon name="globe"></ion-icon>
+      <ion-label>Student</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="openTab3WithQueryParams()">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>

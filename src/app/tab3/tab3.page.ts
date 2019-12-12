@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as firebase from 'firebase';
+
+var firestore = firebase.firestore();
 
 @Component({
   selector: 'app-tab3',
@@ -9,19 +12,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class Tab3Page implements OnInit {
 
   id: any;
+  public userData: firebase.firestore.DocumentData;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {
     this.route.queryParams.subscribe(params => {
       if (params && params.id) {
         this.id = params.id
       }
     })
+
   }
 
   ngOnInit() {
+    var docRef = firestore.collection('users').doc(this.id);
+    docRef.get().then((snapshot) => {
+        this.userData = snapshot.data();
+    });
   }
 
   openTab1WithQueryParams() {

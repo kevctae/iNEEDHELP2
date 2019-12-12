@@ -1,26 +1,53 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tab3</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title align="center">
+      Profile
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf='userData?.id'>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Hi! {{userData.name}}</ion-card-title>
+    </ion-card-header>
+    <img src="{{userData.picture}}"/>
+    <ion-card-content>
+      
+      <div>Name : {{userData.name}}</div>
+      <div>Email : {{userData.email}}</div>
+      <div>ID : {{userData.id}}</div>
+      <div>Year : Sophomore</div>
+      <div>Faculty : Engineering</div>
+      <div>Status : Student</div>
+    </ion-card-content>
+  </ion-card>
+
+    <ion-button color="secondary" expand="block" routerLink="/login/" routerDirection="forward">Waiting</ion-button>
+    <ion-button color="secondary" expand="block" routerLink="/confirmed/" routerDirection="forward">Confirmed</ion-button>
+
+  </div>
+
+  <div *ngIf='!userData?.id'>
+      <ion-spinner name="dots"></ion-spinner>
+  </div>
 
 </ion-content>
 
-<ion-tabs>
-    <ion-tab-bar>
-      <ion-tab-button (click)="openTab1WithQueryParams()">
-        <ion-icon name="school"></ion-icon>
-        <ion-label>Teacher</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab2WithQueryParams()">
-        <ion-icon name="globe"></ion-icon>
-        <ion-label>Student</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab3WithQueryParams()">
-        <ion-icon name="person"></ion-icon>
-        <ion-label>Profile</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+<ion-footer>
+  <ion-tab-bar>
+    <ion-tab-button (click)="openTab1WithQueryParams()">
+      <ion-icon name="school"></ion-icon>
+      <ion-label>Teacher</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="openTab2WithQueryParams()">
+      <ion-icon name="globe"></ion-icon>
+      <ion-label>Student</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="openTab3WithQueryParams()">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
