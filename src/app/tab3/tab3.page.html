@@ -6,12 +6,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content overflow-scroll="true">
-
+<ion-content>
   <div *ngIf='userData?.id'>
   <ion-card>
     <ion-card-header>
-        <ion-card-title>Hi! {{userData.name}}</ion-card-title>
+      <ion-card-title>Hi! {{userData.name}}</ion-card-title>
     </ion-card-header>
     <img src="{{userData.picture}}"/>
     <ion-card-content>
@@ -25,10 +24,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button color="secondary" expand="block" routerLink="/login/" routerDirection="forward">Waiting</ion-button>
-  <ion-button color="secondary" expand="block" routerLink="/confirmed/" routerDirection="forward">Confirmed</ion-button>
+    <ion-button color="secondary" expand="block" routerLink="/login/" routerDirection="forward">Waiting</ion-button>
+    <ion-button color="secondary" expand="block" routerLink="/confirmed/" routerDirection="forward">Confirmed</ion-button>
 
   </div>
+
+  <div *ngIf='!userData?.id'>
+      <ion-spinner name="dots"></ion-spinner>
+  </div>
+
 </ion-content>
 
 <ion-footer>

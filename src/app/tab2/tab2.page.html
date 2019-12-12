@@ -7,86 +7,44 @@
     </ion-buttons>
     <ion-title align="center">Student</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="openNewCardWithQueryParams()">
         <ion-icon slot="icon-only" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content overflow-scroll="true"> 
-  <ion-card>
-    <ion-item>
-      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
-      <ion-label>DIS STR : Generating Function</ion-label>
-      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
-    </ion-item>
-    <ion-card-content>
-      <div>
-        <ion-icon name="person"></ion-icon> min_chayisara
-      </div>
-      <div>
-        <ion-icon name="people"></ion-icon> 8/10
-      </div>
-      <div>
-        <ion-icon name="logo-bitcoin"></ion-icon> 200฿/person
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-item>
-      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
-      <ion-label>ADV MAT : Power Series</ion-label>
-      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
-    </ion-item>
-    <ion-card-content>
-      <div>
-        <ion-icon name="person"></ion-icon> kevctae
-      </div>
-      <div>
-        <ion-icon name="people"></ion-icon> 4/10
-      </div>
-      <div>
-        <ion-icon name="logo-bitcoin"></ion-icon> 250฿/person
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-item>
-      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
-      <ion-label>ELE CIR : JK Flipflop</ion-label>
-      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
-    </ion-item>
-    <ion-card-content>
-      <div>
-        <ion-icon name="person"></ion-icon> jjjajarrr
-      </div>
-      <div>
-        <ion-icon name="people"></ion-icon> 10/10
-      </div>
-      <div>
-        <ion-icon name="logo-bitcoin"></ion-icon> 180฿/person
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-item>
-      <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
-      <ion-label>INTRO ICE : CI/CD</ion-label>
-      <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
-    </ion-item>
-    <ion-card-content>
-      <div>
-        <ion-icon name="person"></ion-icon> chanonartt
-      </div>
-      <div>
-        <ion-icon name="people"></ion-icon> 9/10
-      </div>
-      <div>
-        <ion-icon name="logo-bitcoin"></ion-icon> 19฿/person
-      </div>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  <div *ngFor="let item of items">
+    <ion-card *ngIf='item?.id'>
+      <ion-item>
+        <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
+        <ion-label>{{item.topic}}</ion-label>
+        <ion-button fill="solid" shape="round" slot="end" (click) ="Join()">Join!</ion-button>
+      </ion-item>
+      <ion-card-content>
+        <div>
+          <ion-icon name="book"></ion-icon> {{item.courseName}}
+        </div>
+        <div>
+          <ion-icon name="person"></ion-icon> 
+        </div>
+        <div>
+          <ion-icon name="people"></ion-icon> {{item.count}}/{{item.capacity}}
+        </div>
+        <div>
+          <ion-icon name="logo-bitcoin"></ion-icon> {{item.price}}฿/person
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="i <= 0">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 
 <ion-footer>

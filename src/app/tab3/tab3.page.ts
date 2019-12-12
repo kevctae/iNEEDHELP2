@@ -28,7 +28,6 @@ export class Tab3Page implements OnInit {
   ngOnInit() {
     var docRef = firestore.collection('users').doc(this.id);
     docRef.get().then((snapshot) => {
-        
         this.userData = snapshot.data();
     });
   }

@@ -79,7 +79,6 @@ export class LoginPage implements OnInit {
   }
 
   addDataToFirestore(data: any) {
-    console.log("I am going to save "+data['id']+" to Firestore")
     colRef.doc(data['id']).set({
       id: data['id'],
       name: data['name'],
