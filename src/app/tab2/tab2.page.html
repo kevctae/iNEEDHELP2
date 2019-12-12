@@ -15,19 +15,26 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      refreshingSpinner="dots">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <div *ngFor="let item of items">
     <ion-card *ngIf='item?.id'>
       <ion-item>
         <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
         <ion-label>{{item.topic}}</ion-label>
-        <ion-button fill="solid" shape="round" slot="end">Join!</ion-button>
-      </ion-item>
+            <ion-button fill="solid" shape="round" slot="end" (click)="confirmJoinCard(item.id, item.courseName, item.topic, item.count, item.capacity, item.price, item.members, item.host)">Join!</ion-button>
+        </ion-item>
       <ion-card-content>
         <div>
           <ion-icon name="book"></ion-icon> {{item.courseName}}
         </div>
         <div>
-          <ion-icon name="person"></ion-icon> 
+          <ion-icon name="person"></ion-icon> {{item.host[1]}}
         </div>
         <div>
           <ion-icon name="people"></ion-icon> {{item.count}}/{{item.capacity}}
@@ -39,10 +46,14 @@
     </ion-card>
   </div>
 
+  <div *ngIf='loading' class='ion-padding' class='ion-padding' align="center">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+  
+
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="i <= 0">
     <ion-infinite-scroll-content
-      loadingSpinner="dots"
-      loadingText="Loading more data...">
+      loadingSpinner="dots">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

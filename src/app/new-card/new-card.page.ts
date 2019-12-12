@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { Tab2Page } from '../tab2/tab2.page';
 
 var firestore = firebase.firestore();
 const colRefCards = firestore.collection("cards")
@@ -61,19 +62,14 @@ export class NewCardPage implements OnInit {
   addCard(id: string, name: string) {
     colRefCards.doc(id).set({
       capacity: this.capacity,
-      count: '1',
+      count: 1,
       courseID: id,
       id: this.cardID,
       courseName: name,
       price: this.price,
-      topic: this.topic
-    }).then(function() {
-      console.log("Status saved!");
-    }).catch(function (error){
-      console.log("Got an error: ", error);
-    });
-    colRefCards.doc(id).collection('members').doc('host').set({
-      id: this.id
+      topic: this.topic,
+      host: [this.id, this.userData.name],
+      members: []
     }).then(function() {
       console.log("Status saved!");
     }).catch(function (error){
