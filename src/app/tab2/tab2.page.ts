@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
-firebase.initializeApp(environment.firebaseConfig);
 var firestore = firebase.firestore();
 const colRefCards = firestore.collection("cards")
 const colRefUsers = firestore.collection("users")
@@ -29,13 +28,15 @@ export class Tab2Page implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private toast: ToastController
   ) {
     this.route.queryParams.subscribe(params => {
       if (params && params.id) {
         this.id = params.id
       }
     })
+    
   }
 
   ngOnInit() {
@@ -52,6 +53,9 @@ export class Tab2Page implements OnInit {
   setID(id: string) {
     this.j = Number(id);
     this.i = Number(id);
+    if (this.i==0) {
+      this.loading = false;
+    }
     this.addMoreItems();
   }
   loadData(event) {
@@ -63,7 +67,6 @@ export class Tab2Page implements OnInit {
   }
   addMoreItems() {
     for (let j=Number(this.i); j>Number(this.i)-10; j--) {
-      console.log(this.i);
       if (j>0) {
         var docRef = firestore.collection('cards').doc(j+"");
         docRef.get().then((snapshot) => {
@@ -78,10 +81,10 @@ export class Tab2Page implements OnInit {
           if (snapshot.data().host[0] == this.id) {
             this.joined = true
           }
-          if (snapshot.data().capacity > snapshot.data().count && !this.joined) {
+          if (snapshot.data().capacity > snapshot.data().count && !this.joined && !snapshot.data().status) {
             this.items.push(snapshot.data());
           }
-        });
+        }).catch(e => console.log(e));
       }
     }
     this.i -= 10;
@@ -109,7 +112,7 @@ export class Tab2Page implements OnInit {
               console.log('Confirm Cancel: blah');
             }
           }, {
-            text: 'join',
+            text: 'Join!',
             handler: () => {
               console.log('Confirm Okay');
               this.addToCard(id);
@@ -127,6 +130,7 @@ export class Tab2Page implements OnInit {
     colRefUsers.doc(this.id).update({
       cards: firebase.firestore.FieldValue.arrayUnion(id),
     })
+    this.showJoined();
   }
 
   openTab1WithQueryParams() {
@@ -163,4 +167,11 @@ export class Tab2Page implements OnInit {
     this.router.navigate(['new-card'], navigationExtras);
   }
 
+  async showJoined() {
+    const t = await this.toast.create({
+      message: "Card Joined!",
+      duration: 3000
+    });
+    await t.present();
+  }
 }

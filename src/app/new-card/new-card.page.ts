@@ -69,7 +69,9 @@ export class NewCardPage implements OnInit {
       price: this.price,
       topic: this.topic,
       host: [this.id, this.userData.name],
-      members: []
+      members: [],
+      status: false,
+      teacher: "",
     }).then(function() {
       console.log("Status saved!");
     }).catch(function (error){

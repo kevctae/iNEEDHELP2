@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: Tab3Page
+  },
+  {
+    path: 'waiting',
+    loadChildren: () => import('./waiting/waiting.module').then( m => m.WaitingPageModule)
+  },
+  {
+    path: 'confirmed',
+    loadChildren: () => import('./confirmed/confirmed.module').then( m => m.ConfirmedPageModule)
   }
 ];
 

@@ -1,20 +1,13 @@
-<ion-header translucent>
-    <ion-toolbar color="primary">
+<ion-header>
+    <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-button>
-          <ion-icon slot="icon-only" name="search"></ion-icon>
-        </ion-button>
+        <ion-back-button defaultHref="/tab3/"></ion-back-button>
       </ion-buttons>
-      <ion-title align="center">Teacher</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="openNewCardWithQueryParams()">
-          <ion-icon slot="icon-only" name="add"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      <ion-title>Waiting Cards</ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-content>
+
+<ion-content>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content
         pullingIcon="arrow-dropdown"
@@ -27,7 +20,7 @@
         <ion-item>
           <ion-icon color="secondary" name="pin" slot="start"></ion-icon>
           <ion-label>{{item.topic}}</ion-label>
-              <ion-button color="tertiary" fill="solid" shape="round" slot="end" (click)="confirmTeachCard(item.id, item.courseName, item.topic, item.count, item.capacity, item.price, item.members, item.host)">Teach!</ion-button>
+              <ion-button fill="solid" shape="round" slot="end" color="warning">Waiting...</ion-button>
           </ion-item>
         <ion-card-content>
           <div>
@@ -42,11 +35,13 @@
           <div>
             <ion-icon name="logo-bitcoin"></ion-icon> {{item.price}}฿/person
           </div>
+          
+          <ion-button fill="solid" shape="round" slot="end" color="danger" (click)="confirmDeleteCard(item.id, item.courseName, item.topic)">Delete</ion-button>
         </ion-card-content>
       </ion-card>
     </div>
   
-    <div *ngIf='loading && i!=0' class='ion-padding' class='ion-padding' align="center">
+    <div *ngIf='loading' class='ion-padding' class='ion-padding' align="center">
       <ion-spinner name="dots"></ion-spinner>
     </div>
     
@@ -57,20 +52,3 @@
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-content>
-  
-  <ion-footer>
-    <ion-tab-bar>
-      <ion-tab-button (click)="openTab1WithQueryParams()">
-          <ion-icon name="school"></ion-icon>
-        <ion-label>Teacher</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab2WithQueryParams()">
-        <ion-icon name="globe"></ion-icon>
-        <ion-label>Student</ion-label>
-      </ion-tab-button>
-      <ion-tab-button (click)="openTab3WithQueryParams()">
-        <ion-icon name="person"></ion-icon>
-        <ion-label>Profile</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-footer>

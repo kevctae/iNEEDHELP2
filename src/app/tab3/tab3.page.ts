@@ -57,5 +57,21 @@ export class Tab3Page implements OnInit {
     }
     this.router.navigate(['tab3'], navigationExtras);
   }
+  openWaitingWithQueryParams() {
+    let navigationExtras = {
+      queryParams: {
+        id: this.id
+      }
+    }
+    this.router.navigate(['tab3/waiting'], navigationExtras);
+  }
+  openConfirmedWithQueryParams() {
+    let navigationExtras = {
+      queryParams: {
+        id: this.id
+      }
+    }
+    this.router.navigate(['tab3/confirmed'], navigationExtras);
+  }
 
 }

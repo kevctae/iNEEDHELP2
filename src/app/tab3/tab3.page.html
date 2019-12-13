@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf='userData?.id'>
+  <div *ngIf='userData?.id' class='ion-padding'>
   <ion-card>
     <ion-card-header>
       <ion-card-title>Hi! {{userData.name}}</ion-card-title>
@@ -23,9 +23,8 @@
       <div>Status : Student</div>
     </ion-card-content>
   </ion-card>
-
-    <ion-button color="secondary" expand="block" routerLink="/login/" routerDirection="forward">Waiting</ion-button>
-    <ion-button color="secondary" expand="block" routerLink="/confirmed/" routerDirection="forward">Confirmed</ion-button>
+    <ion-button color="secondary" expand="block" (click)="openWaitingWithQueryParams()">Waiting</ion-button>
+    <ion-button color="secondary" expand="block" (click)="openConfirmedWithQueryParams()">Confirmed</ion-button>
 
   </div>
 
